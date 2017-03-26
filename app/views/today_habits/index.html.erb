@@ -1,0 +1,21 @@
+<ul>
+  <li>
+    <%= link_to "今日", today_habits_path %>
+  </li>
+  <li>
+    <%= link_to "一覧", habits_path %>
+  </li>
+</ul>
+<% @achivements.each do |achivement| %>
+  <div class="habit">
+    <%= check_box_tag :archivement, false, achivement.completed, class: "habit-check", "data-id" => achivement.id, "data-memo-id" => achivement.try(:memo).try(:id), "data-habit-id" => achivement.habit.id %>
+    <span class="<%= achivement.completed == true ? "habit__checked" : "" %>">
+      <%= link_to achivement.habit.name, edit_habit_path(achivement.habit.id) %>
+    </span>
+    <span style="margin-left:5px;">
+      <%= link_to "メモ", "#",  class: "habit__memoLink" %>
+    </span>
+  </div>
+<% end %>
+
+<%= render "today_habits/entry_memo_modal" %>

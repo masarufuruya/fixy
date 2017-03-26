@@ -1,0 +1,23 @@
+<% habits.each do |habit| %>
+  <div>
+    <%= link_to habit.name, edit_habit_path(habit.id) %><%= habit.start_date.strftime("%m-%d") %>-<%= habit.end_date.strftime("%m-%d") %>
+    <ul>
+      <% habit.achivements.each do |achivement| %>
+        <li>
+          <%= achivement.date.strftime("%m-%d") %>
+          <% if achivement.date <= Time.zone.today %>
+            <% if achivement.completed == true %>
+              ◯
+            <% else %>
+              ☓
+            <% end %>
+          <% else %>
+            無し
+          <% end %>
+        </li>
+      <% end %>
+      達成率: <%= habit.achivement_rate %>%
+      <%= link_to "メモ#{habit.memos.length}件", "#", class: "memo__count" %>
+    </ul>
+  </div>
+<% end %>

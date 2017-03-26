@@ -1,0 +1,22 @@
+<h1>習慣追加</h1>
+<%= form_for(@habit) do |f| %>
+  <div>
+    <%= f.text_area :name %>
+  </div>
+  <div>
+    <%= f.label :start_date, value: "開始日付" %>
+    <%= f.text_field :start_date %>〜
+    <%= f.label :end_date, value: "終了日付" %>
+    <%= f.text_field :end_date %>
+  </div>
+  <div>
+    <% @days.each do |day| %>
+      <% # labelとcheckのnameを一緒にする %>
+      <% #多:多の複数チェックボックス %>
+      <% #http://ruby-rails.hatenadiary.com/entry/20150113/1421149061 %>
+      <%= check_box_tag 'habit[day_ids][]', day.id, false, id: "habit_day_ids_#{day.id}" %>
+      <%= label_tag "habit[day_ids][#{day.id}]", day.name %>
+    <% end %>
+  </div>
+  <%= f.submit %>
+<% end %>

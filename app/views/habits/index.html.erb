@@ -1,0 +1,16 @@
+<ul>
+  <li>
+    <%= link_to "今日", today_habits_path %>
+  </li>
+  <li>
+    <%= link_to "一覧", habits_path %>
+  </li>
+</ul>
+
+<h2>取り組み中</h2>
+<%= render "habits/habit_list", habits: @doing_habits %>
+
+<h2>終了</h2>
+<%= render "habits/habit_list", habits: @completed_habits %>
+
+<%= render "habits/memo_list_modal" %>
