@@ -1,6 +1,15 @@
 class MemosController < ApplicationController
   before_action :set_memo, only: [:update]
 
+  def index
+    memos = Memo.where(habit_id: params[:habit_id])
+    if memos
+      render json: { status: 'success', memos: memos }
+    else
+      render json: { status: 'error' }
+    end
+  end
+
   def show
     @memo = Memo.find_by(habit_id: params[:habit_id], achivement_id: params[:achivement_id])
     if @memo

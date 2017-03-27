@@ -17,7 +17,7 @@
         </li>
       <% end %>
       達成率: <%= habit.achivement_rate %>%
-      <%= link_to "メモ#{habit.memos.length}件", "#", class: "memo__count" %>
+      <%= link_to "メモ#{habit.memos.length}件", "#", class: "memo__count", "data-habit-id" => habit.id %>
     </ul>
   </div>
 <% end %>

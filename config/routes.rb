@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :habits do
     resources :achivements, only: [:update] do
       resource :memo, only: [:show]
-      resources :memos, only: [:index, :create, :update]
+      resources :memos, only: [:create, :update]
     end
     resources :memos, only: [:index]
   end
