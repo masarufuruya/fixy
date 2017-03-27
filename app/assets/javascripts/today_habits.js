@@ -73,6 +73,7 @@ $(document).ready(function() {
     });
   })
   $('.habit__memoLink').on('click', function() {
+    console.log('ddddd')
     var $thisHabitCheck = $(this).closest('.habit').find('.habit-check'),
       habitId = $thisHabitCheck.data('habit-id'),
       achivementId = $thisHabitCheck.data('id');

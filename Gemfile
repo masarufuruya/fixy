@@ -63,4 +63,7 @@ end
 
 gem 'devise'
 gem 'seed-fu'
+
+#bootswatchを入れたらモーダル動かない?
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
