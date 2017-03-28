@@ -12,19 +12,22 @@
 
 ActiveRecord::Schema.define(version: 20170321114746) do
 
-  create_table "achivements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "achivements", force: :cascade do |t|
     t.integer "habit_id"
     t.date    "date"
-    t.boolean "completed",               default: false
-    t.text    "memo",      limit: 65535
+    t.boolean "completed", default: false
+    t.text    "memo"
     t.index ["habit_id"], name: "index_achivements_on_habit_id", using: :btree
   end
 
-  create_table "days", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "days", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "habit_days", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "habit_days", force: :cascade do |t|
     t.integer  "habit_id"
     t.integer  "day_id"
     t.boolean  "checked",    default: false
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170321114746) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "habits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "habits", force: :cascade do |t|
     t.string  "name",       null: false
     t.integer "user_id"
     t.date    "start_date"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170321114746) do
     t.index ["user_id"], name: "index_habits_on_user_id", using: :btree
   end
 
-  create_table "memos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "memos", force: :cascade do |t|
     t.string   "body"
     t.integer  "habit_id"
     t.integer  "achivement_id"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170321114746) do
     t.index ["habit_id"], name: "index_memos_on_habit_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
