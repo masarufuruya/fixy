@@ -1,4 +1,4 @@
-#ActionMailerの基底クラス
+#ActionMailerのベースクラス
 class ApplicationMailer < ActionMailer::Base
   default from: 'from@example.com'
   layout 'mailer'
