@@ -9,8 +9,15 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
+// 外部ライブラリ(gem)
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require_tree .
+
+// 外部ライブラリ(vendor)
+//= require moment
+
+// ページ固有のJS
+//= require habits
+//= require today_habits

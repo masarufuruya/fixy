@@ -9,7 +9,8 @@ $(document).ready(function() {
       var $memoList = $('.memo__list');
       $memoList.empty();
       $.each(data.memos, function(i, memo) {
-        $memoList.append('<li>'+memo.body+'</li>');
+        var createdAt = moment(memo.created_at).format("YYYY-MM-DD")
+        $memoList.append('<li>'+createdAt+': '+memo.body+'</li>');
       });
       $('#memoListModal').modal('show');
     }).fail(function(xhr, status, error) {
