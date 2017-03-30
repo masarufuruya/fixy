@@ -9,4 +9,8 @@ Rails.application.routes.draw do
     resources :memos, only: [:index]
   end
   resources :today_habits, only: [:index]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
 end

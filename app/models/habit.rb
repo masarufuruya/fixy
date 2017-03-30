@@ -5,26 +5,38 @@ class Habit < ActiveRecord::Base
   has_many :days, through: :habit_days
   belongs_to :user
 
+  validate :limit_habit_period
+
   scope :doing_habits, ->(user_id) {
     today_date = Time.zone.today
     #JOINさせたくない場合にN+1対策するならpreload
     #INNERJOINにするとメモが0件の習慣がでなくなるのでLEFTJOIN
     #レコード多くてOrderするようなSQLは1件のSQLにすると遅いのでpreloadで分割した方が早い
     Habit
-      .preload(:memos, :achivements)
+      .preload(:memos)
+      .eager_load(:achivements)
       .where(habits: {user_id: user_id})
       .where("habits.start_date <= ? AND ? <= habits.end_date", today_date, today_date)
-      .order(start_date: :asc)
+      .order("achivements.date asc")
   }
 
   scope :completed_habits, ->(user_id) {
     today_date = Time.zone.today
     Habit
-      .preload(:memos, :achivements)
+      .preload(:memos)
+      .eager_load(:achivements)
       .where(habits: {user_id: user_id})
       .where("habits.end_date < ?", today_date)
-      .order(start_date: :asc)
+      .order("achivements.date asc")
   }
+
+  #期間に上限を設ける
+  def limit_habit_period
+    max_period = 2.weeks
+    if start_date < (end_date - max_period)
+      errors.add(:start_date, "取り組む習慣の期間は最大2週間に設定しましょう")
+    end
+  end
 
   def achivement_rate
     completed_count = achivements.select { |achivement| achivement.completed == true }.count

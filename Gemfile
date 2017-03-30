@@ -57,6 +57,9 @@ group :development do
   #バルクインサート
   gem 'activerecord-import'
   gem 'bullet'
+  # mailcacherはrails5で動かなかった
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 # herokuのため開発もpgに合わせる

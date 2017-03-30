@@ -62,4 +62,9 @@ Rails.application.configure do
     Bullet.rails_logger = false
     Bullet.add_footer = true
   end
+
+  #letter_opener
+  config.action_mailer.perform_caching = true
+  config.action_mailer.default_url_options = { host: 'localhost:3004' }
+  config.action_mailer.delivery_method = :letter_opener_web
 end
