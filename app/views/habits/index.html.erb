@@ -1,16 +1,26 @@
-<ul>
-  <li>
-    <%= link_to "今日", today_habits_path %>
-  </li>
-  <li>
-    <%= link_to "一覧", habits_path %>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-4">
+    <%= render "shared/left_menu" %>
+  </div>
 
-<h2>取り組み中</h2>
-<%= render "habits/habit_list", habits: @doing_habits %>
-
-<h2>終了</h2>
-<%= render "habits/habit_list", habits: @completed_habits %>
+  <div class="col-lg-9 col-md-9 col-sm-8">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <%= link_to "取り組み中", "#doing", "data-toggle" => "tab" %>
+      </li>
+      <li>
+        <%= link_to "終了", "#completed", "data-toggle" => "tab" %>
+      </li>
+    </ul>
+    <div id="habitListTabContent" class="tab-content">
+      <div class="tab-pane fade active in" id="doing" style="margin: 20px;">
+        <%= render "habits/habit_list", habits: @doing_habits %>
+      </div>
+      <div class="tab-pane fade" id="completed" style="margin: 20px;">
+        <%= render "habits/habit_list", habits: @completed_habits %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render "habits/memo_list_modal" %>
