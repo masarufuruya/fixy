@@ -1,12 +1,8 @@
-本日の習慣
+今日予定している習慣一覧
 ===============================================
 
-本日は以下の習慣に取り組みましょう！
-
-<% @today_habits.each do |habit| %>
-
-  <%= habit.name %>
-
+<% @today_habits.each do |achivement| %>
+<%= achivement.habit.name %>
 <% end %>
 
 このサイトにログインするには、<%= @url %>をクリックしてください。

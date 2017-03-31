@@ -4,17 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>本日の習慣</h1>
-      <p>
-      本日は以下の習慣に取り組みましょう！
-      </p>
+    <h1>今日予定している習慣一覧</h1>
       <ul>
-        <% @today_habits.each do |habit| %>
-          <li><%= habit.name %></li>
+        <% @today_habits.each do |achivement| %>
+          <li><%= achivement.habit.name %></li>
         <% end %>
       </ul>
     <p>
-      このサイトにログインするには、<%= @url %>をクリックしてください。
+      このサイトにログインするには、<a href="<%= @url %>"><%= @url %></a>をクリックしてください。
     </p>
   </body>
 </html>
