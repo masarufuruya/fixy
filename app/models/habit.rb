@@ -67,21 +67,6 @@ class Habit < ActiveRecord::Base
     end
   end
 
-  def update_habit_achivements(habit_params, checked_day_ids)
-    begin
-      ActiveRecord::Base.transaction do
-        self.update!(habit_params)
-        self.habit_days.destroy_all
-        self.achivements.destroy_all
-        create_habit_days(checked_day_ids)
-        create_achivements(checked_day_ids)
-      end
-      return true
-    rescue => e
-      return false
-    end
-  end
-
   private
 
     def create_habit_days(day_ids)

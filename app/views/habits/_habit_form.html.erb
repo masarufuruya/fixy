@@ -19,7 +19,7 @@
         <%= check_box_tag 'habit[day_ids][]', day.id, false, id: "habit_day_ids_#{day.id}" %>
       <% else %>
         <% habit_day = HabitDay.find_by(habit_id: habit.id, day_id: day.id) %>
-        <%= check_box_tag 'habit[day_ids][]', day.id, habit_day.try(:checked), id: "habit_day_ids_#{day.id}" %>
+        <%= check_box_tag 'habit[day_ids][]', day.id, habit_day.try(:checked), id: "habit_day_ids_#{day.id}", disabled: !habit.new_record? %>
       <% end %>
       <%= label_tag "habit[day_ids][#{day.id}]", day.name %>
     <% end %>

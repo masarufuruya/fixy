@@ -13,7 +13,7 @@ class HabitsController < ApplicationController
   end
 
   def create
-    @habit = Habit.new(habit_params.merge(user: current_user))
+    @habit = Habit.new(new_habit_params.merge(user: current_user))
     if @habit.create_habit_achivements(params[:habit][:day_ids])
       flash[:success] = '保存しました'
       redirect_to root_path
@@ -28,7 +28,7 @@ class HabitsController < ApplicationController
   end
 
   def update
-    if @habit.update_habit_achivements(habit_params, params[:habit][:day_ids])
+    if @habit.update(update_habit_params)
       flash[:success] = '保存しました'
       redirect_to root_path
     else
@@ -52,7 +52,11 @@ class HabitsController < ApplicationController
       @habit = Habit.find(params[:id])
     end
 
-    def habit_params
+    def new_habit_params
       params.require(:habit).permit(:name, :start_date, :end_date)
+    end
+
+    def update_habit_params
+      params.require(:habit).permit(:name)
     end
 end
