@@ -6,4 +6,23 @@
     color: #d9d9d9;
     text-decoration: line-through;
   }
+  &-check {
+    display: none;
+    & + &--custom {
+      font-size: 22px;
+      vertical-align: middle;
+    }
+    & + &--custom:before {
+      content: "\f401";
+      font-family: "Ionicons";
+      color: #ccc;
+      font-size: 22px;
+    }
+    &:checked + &--custom:before {
+      content: "\f3fe";
+      font-family: "Ionicons";
+      color: #ccc;
+      font-size: 22px;
+    }
+  }
 }

@@ -57,10 +57,10 @@ $(document).ready(function() {
       checked = false;
     if ($(this).is(':checked')) {
       checked = true;
-      $(this).parents('.habit').find('span:first').addClass('habit__checked');
+      $(this).parents('.habit').find('span:eq(1)').addClass('habit__checked');
     } else {
       checked = false;
-      $(this).parents('.habit').find('span:first').removeClass('habit__checked');
+      $(this).parents('.habit').find('span:eq(1)').removeClass('habit__checked');
     }
     updateAchivement(habitId, achivementId, checked)
   });
@@ -73,7 +73,6 @@ $(document).ready(function() {
     });
   })
   $('.habit__memoLink').on('click', function() {
-    console.log('ddddd')
     var $thisHabitCheck = $(this).closest('.habit').find('.habit-check'),
       habitId = $thisHabitCheck.data('habit-id'),
       achivementId = $thisHabitCheck.data('id');

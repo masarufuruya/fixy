@@ -1,6 +1,14 @@
+//外部ライブライ(gem)
+//bootswatch-rails
+//bootstrap-sass
 @import "bootswatch/journal/variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootswatch/journal/bootswatch";
+
+//外部ライブラリ(vendor)
+@import "ionicons/css/ionicons.css";
+
+//ページ固有
 @import "pages/habits";
 @import "pages/header";
