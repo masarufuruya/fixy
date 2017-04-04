@@ -32,9 +32,11 @@ class Habit < ActiveRecord::Base
 
   #期間に上限を設ける
   def limit_habit_period
-    max_period = 2.weeks
+    max_period = 1.weeks
     if start_date < (end_date - max_period)
-      errors.add(:start_date, "取り組む習慣の期間は最大2週間に設定しましょう")
+      errors.add(:start_date, "取り組む習慣の期間は最大1週間に設定しましょう")
+    elsif Time.zone.today < start_date
+      errors.add(:start_date, "未来の日付は指定できません")
     end
   end
 

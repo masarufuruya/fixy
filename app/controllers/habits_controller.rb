@@ -53,10 +53,10 @@ class HabitsController < ApplicationController
     end
 
     def new_habit_params
-      params.require(:habit).permit(:name, :start_date, :end_date)
+      params.require(:habit).permit(:name, :purpose, :goal, :start_date, :end_date)
     end
 
     def update_habit_params
-      params.require(:habit).permit(:name)
+      params.require(:habit).permit(:name, :purpose, :goal)
     end
 end

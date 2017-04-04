@@ -1,7 +1,15 @@
 <h1><%= title %></h1>
 <%= form_for(habit) do |f| %>
   <div>
-    <%= f.text_area :name, class: "form-control" %>
+    <%= f.text_area :name, class: "form-control", placeholder: "夜に5分間ジョギングをする" %>
+  </div>
+  <div>
+    <%= f.label :purpose, value: "目的" %>
+    <%= f.text_field :purpose, class: "form-control", placeholder: "毎日運動する習慣をつける" %>
+  </div>
+  <div>
+    <%= f.label :goal, value: "達成基準" %>
+    <%= f.text_field :goal, class: "form-control", placeholder: "達成率80%以上" %>
   </div>
   <div class="form-inline" style="margin-top: 10px;">
     <%= f.label :start_date, value: "開始日付" %>
@@ -9,7 +17,7 @@
     <%= f.label :end_date, value: "終了日付" %>
     <%= f.text_field :end_date, class: "form-control", disabled: !habit.new_record? %>
   </div>
-  <p>※ 期間は2週間以内にしてください</p>
+  <p>※ 期間は1週間以内にしてください</p>
   <div style="margin-top: 10px;margin-bottom:10px;">
     <% days.each do |day| %>
       <% # labelとcheckのnameを一緒にする %>
