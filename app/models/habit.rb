@@ -55,6 +55,8 @@ class Habit < ActiveRecord::Base
   end
 
   def create_habit_achivements(checked_day_ids)
+    # 取得時は競合せず保存時に競合を確認する(楽観的ロック) rescue ActiveRecord::StaleObjectError
+    # バリデーションエラーとそれ以外のDB通信等のエラーの内容を分ける
     begin
       ActiveRecord::Base.transaction do
         #ここの保存が失敗する
@@ -62,10 +64,11 @@ class Habit < ActiveRecord::Base
         create_habit_days(checked_day_ids)
         create_achivements(checked_day_ids)
       end
-      return true
+      return {error: ''}
+    rescue ActiveRecord::RecordInvalid => e
+      return {error: e.record.errors.full_messages}
     rescue => e
-      # 取得時は競合せず保存時に競合を確認する(楽観的ロック) rescue ActiveRecord::StaleObjectError
-      return false
+      return {error: ['失敗しました']}
     end
   end
 

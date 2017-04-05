@@ -14,13 +14,13 @@ class HabitsController < ApplicationController
 
   def create
     @habit = Habit.new(new_habit_params.merge(user: current_user))
-    if @habit.create_habit_achivements(params[:habit][:day_ids])
-      flash[:success] = '保存しました'
-      redirect_to root_path
+    error = @habit.create_habit_achivements(params[:habit][:day_ids])[:error]
+    if error.present?
+      flash[:error_messages] = error
     else
-      flash[:danger] = '失敗しました'
-      redirect_to root_path
+      flash[:success] = '成功しました'
     end
+    redirect_to root_path
   end
 
   def edit

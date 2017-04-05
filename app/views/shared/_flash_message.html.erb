@@ -1,0 +1,10 @@
+<% #バリデーションエラーとそれ以外を分ける %>
+<% if flash[:error_messages] && flash[:error_messages].length > 0 %>
+  <% flash[:error_messages].each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+<% elsif flash[:notice] %>
+  <div class="alert alert-warning"><%= flash[:notice] %></div>
+<% elsif flash[:success] %>
+  <div class="alert alert-success"><%= flash[:success] %></div>
+<% end %>

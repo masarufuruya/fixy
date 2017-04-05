@@ -20,12 +20,7 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container" style="margin-bottom:50px;">
-      <% flash.each do |type, msg| %>
-        <% #RailsのセッションIDの保存先を調べる %>
-        <% #Deviseのセッションタイムアウトは除外 %>
-        <% next if type == 'timedout' %>
-        <div class="alert alert-<%= type %>"><%= msg %></div>
-      <% end %>
+      <%= render('shared/flash_message') %>
       <%= yield %>
     </div>
   </body>
