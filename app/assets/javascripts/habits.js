@@ -18,4 +18,7 @@ $(document).ready(function() {
     });
     return false;
   });
+  $('input[type="text"]').keypress(function(e) {
+    if ((e.which == 13) || (e.keyCode == 13)) { return false; }
+  });
 });

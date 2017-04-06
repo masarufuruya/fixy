@@ -8,7 +8,8 @@ class HabitsController < ApplicationController
   end
 
   def new
-    @habit = Habit.new
+    now = Time.current
+    @habit = Habit.new(start_date: now.strftime("%Y-%m-%d"), end_date: now.since(6.days).strftime("%Y-%m-%d"))
     @days = Day.all
   end
 
@@ -18,7 +19,7 @@ class HabitsController < ApplicationController
     if error.present?
       flash[:error_messages] = error
     else
-      flash[:success] = '成功しました'
+      flash[:success] = "成功しました"
     end
     redirect_to root_path
   end
@@ -29,22 +30,20 @@ class HabitsController < ApplicationController
 
   def update
     if @habit.update(update_habit_params)
-      flash[:success] = '保存しました'
-      redirect_to root_path
+      flash[:success] = "保存しました"
     else
-      flash[:danger] = '失敗しました'
-      redirect_to root_path
+      flash[:danger] = "失敗しました"
     end
+    redirect_to root_path
   end
 
   def destroy
     if @habit.destroy
-      flash[:success] = '削除しました'
-      redirect_to root_path
+      flash[:success] = "削除しました"
     else
-      flash[:danger] = '失敗しました'
-      redirect_to root_path
+      flash[:danger] = "失敗しました"
     end
+    redirect_to root_path
   end
 
   private
