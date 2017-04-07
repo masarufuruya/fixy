@@ -1,23 +1,40 @@
 <% habits.each do |habit| %>
-  <div>
-    <%= link_to habit.name, edit_habit_path(habit.id), style: "margin-right: 15px;" %><%= habit.start_date.strftime("%m-%d") %>-<%= habit.end_date.strftime("%m-%d") %>
-    <ul>
-      <% habit.achivements.each do |achivement| %>
-        <li>
-          <%= achivement.date.strftime("%m-%d") %>
-          <% if achivement.date <= Time.zone.today %>
-            <% if achivement.completed == true %>
-              ◯
-            <% else %>
-              ☓
-            <% end %>
-          <% else %>
-            無し
+  <div class="well" style="margin-top: 20px;background-color:#fafafa;">
+    <%= link_to habit.name, edit_habit_path(habit.id), style: "margin-right: 15px;font-weight:bold;" %><%= habit.start_date.strftime("%m-%d") %>-<%= habit.end_date.strftime("%m-%d") %>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <% habit.achivements.each do |achivement| %>
+            <th><%= achivement.date.strftime("%m-%d") %></th>
           <% end %>
-        </li>
-      <% end %>
-      達成率: <%= habit.achivement_rate %>%
-      <%= link_to "メモ#{habit.memos.length}件", "#", class: "memo__count", "data-habit-id" => habit.id %>
-    </ul>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% habit.achivements.each do |achivement| %>
+            <% achivement_value = "" %>
+            <% achivement_class = "" %>
+            <% if achivement.date <= Time.zone.today %>
+              <%
+                if achivement.completed == true
+                  achivement_value = "◯"
+                  achivement_class = "success"
+                else
+                  achivement_value = "☓"
+                  achivement_class = "danger"
+                end
+              %>
+            <% else %>
+              <% achivement_class = 'acitve' %>
+            <% end %>
+            <td class="<%= achivement_class %>">
+              <%= achivement_value %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    達成率: <%= habit.achivement_rate %>%
+    <%= link_to "メモ#{habit.memos.length}件", "#", class: "memo__count", "data-habit-id" => habit.id %>
   </div>
 <% end %>

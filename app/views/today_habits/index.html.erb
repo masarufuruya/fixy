@@ -6,7 +6,6 @@
   <div class="col-lg-9 col-md-9 col-sm-8">
     <% @achivements.each do |achivement| %>
       <div class="habit" style="font-size: 16px;border-bottom: 1px solid #f0f0f0;padding: 13px 0px;">
-
         <label>
           <%= check_box_tag :archivement, false, achivement.completed, class: "habit-check", "data-id" => achivement.id, "data-memo-id" => achivement.try(:memo).try(:id), "data-habit-id" => achivement.habit.id %>
           <span class="habit-check--custom"></span>
@@ -17,6 +16,9 @@
         <span style="margin-left:5px;font-size:14px;">
           <%= link_to "メモ", "#",  class: "habit__memoLink" %>
         </span>
+        <div style="font-size: 12px;">
+          目的: <%= achivement.habit.purpose %>
+        </div>
       </div>
     <% end %>
   </div>
