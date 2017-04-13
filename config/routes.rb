@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #TODO: Antreでは認証は自作にしたい
   devise_for :users
   root to: "today_habits#index"
   resources :habits do
