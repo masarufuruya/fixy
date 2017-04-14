@@ -13,6 +13,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <li><%= link_to '設定', edit_user_registration_path, class: "add-habit-btn" %></li>
             <li><%= link_to '習慣追加', new_habit_path, class: "add-habit-btn" %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% else %>

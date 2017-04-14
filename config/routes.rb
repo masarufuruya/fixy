@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   #TODO: Antreでは認証は自作にしたい
-  devise_for :users
+  #Deviseのコントローラーをカスタマイズ
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
   root to: "today_habits#index"
   resources :habits do
     resources :achivements, only: [:update] do
