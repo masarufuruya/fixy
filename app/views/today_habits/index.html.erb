@@ -13,8 +13,11 @@
             <%= link_to achivement.habit.name, edit_habit_path(achivement.habit.id) %>
           </span>
         </label>
+        <%= link_to "メモ#{achivement.habit.memos.length}件", "#", class: "memo__count", style: "font-size: 14px;", "data-habit-id" => achivement.habit.id %>
         <span style="margin-left:5px;font-size:14px;">
-          <%= link_to "メモ", "#",  class: "habit__memoLink" %>
+          <%= link_to "#",  class: "habit__memoLink" do %>
+            <i class="icon ion-plus-round"></i>メモ
+          <% end %>
         </span>
         <div style="font-size: 12px;">
           目的: <%= achivement.habit.purpose %>
@@ -25,3 +28,4 @@
 </div>
 
 <%= render "today_habits/entry_memo_modal" %>
+<%= render "habits/memo_list_modal" %>

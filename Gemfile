@@ -71,7 +71,4 @@ gem "seed-fu"
 gem "bootstrap-sass"
 gem "bootswatch-rails"
 
-#webpackerを導入
-gem "webpacker", github: "rails/webpacker"
-
 ruby "2.3.1"
