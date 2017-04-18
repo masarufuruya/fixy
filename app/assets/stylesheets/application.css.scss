@@ -6,6 +6,8 @@
 @import "bootstrap";
 @import "bootswatch/journal/bootswatch";
 
+@import "common/custom_bootstrap";
+
 //外部ライブラリ(vendor)
 //なぜかローカルだとHerokuで動かなかった
 @import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");

@@ -48,7 +48,7 @@ $(document).ready(function() {
     }).fail(function(xhr, status, error) {
       console.log(error);
     }).always(function() {
-      $('#myModal').modal('hide')
+      $('.modal').modal('hide')
     });
   }
   $('.habit-check').on('change', function() {
@@ -64,15 +64,16 @@ $(document).ready(function() {
     }
     updateAchivement(habitId, achivementId, checked)
   });
-  $('#myModal').on('show.bs.modal', function (e) {
+  $('#memoListModal').on('show.bs.modal', function (e) {
     var $modalBody = $('.modal-body').find('textarea'),
       habitId = $modalBody.attr('data-habit-id'),
       achivementId = $modalBody.attr('data-achivement-id');
     fetchMemo(habitId, achivementId, function(memo) {
       $modalBody.val(memo.body);
+      $modalBody.focus();
     });
   })
-  $('.habit__memoLink').on('click', function() {
+  $('.memo__count').on('click', function() {
     var $thisHabitCheck = $(this).closest('.habit').find('.habit-check'),
       habitId = $thisHabitCheck.data('habit-id'),
       achivementId = $thisHabitCheck.data('id');
@@ -82,7 +83,7 @@ $(document).ready(function() {
     $modalBody.attr('data-habit-id', habitId);
     $modalBody.attr('data-achivement-id', achivementId);
     $modalBody.attr('data-memo-id', memoId);
-    $('#myModal').modal('show');
+    $('#memoListModal').modal();
     //aタグを無効にしないとモーダルがおかしくなる
     return false;
   });

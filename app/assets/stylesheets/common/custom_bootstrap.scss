@@ -1,0 +1,13 @@
+//モーダルをfadein,fadeoutさせる
+.fade2 {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.fade2.in {
+  opacity: 1;
+}
