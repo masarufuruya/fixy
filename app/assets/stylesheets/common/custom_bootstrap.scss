@@ -1,3 +1,8 @@
+.modal-body {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 //モーダルをfadein,fadeoutさせる
 .fade2 {
   -webkit-transition: all 0.2s;
