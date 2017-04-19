@@ -18,6 +18,9 @@
 // 外部ライブラリ(vendor)
 //= require moment
 
+// 共通JS
+//= require common
+
 // ページ固有のJS
 //= require habits
 //= require today_habits
