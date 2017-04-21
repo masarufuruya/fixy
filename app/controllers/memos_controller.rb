@@ -2,7 +2,7 @@ class MemosController < ApplicationController
   before_action :set_memo, only: [:update]
 
   def index
-    memos = Memo.where(habit_id: params[:habit_id])
+    memos = Memo.where(habit_id: params[:habit_id]).order(created_at: :asc)
     if memos
       render json: { status: 'success', memos: memos }
     else
